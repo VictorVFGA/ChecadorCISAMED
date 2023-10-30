@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Consulta de Registros por Fecha</title>
+</head>
+<body>
+    <h1>Consulta de Registros por Fecha</h1>
+    <form method="POST" action="consulta.php">
+        <label for="fecha">Selecciona una fecha:</label>
+        <input type="date" id="fecha" name="fecha_consulta" value="<?php echo date('Y-m-d'); ?>">
+        <br>
+        <input type="submit" value="Consultar">
+    </form>
+    
+</body>
+</html>
+
