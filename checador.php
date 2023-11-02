@@ -81,7 +81,7 @@ th {
 <div class="container">
 <?php
 // Conexión a la base de datos y obtención del ID del empleado más reciente
-$conexion = new mysqli("localhost", "root", "", "checador");
+$conexion = new mysqli("db", "victor", "pass123", "checador");
 $query_latest_id = "SELECT id_emple FROM regis_ingreso ORDER BY id_reg DESC LIMIT 1";
 $result_latest_id = $conexion->query($query_latest_id);
 

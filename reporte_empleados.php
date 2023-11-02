@@ -72,7 +72,7 @@ th {
 <div class="container">
 <?php
 // Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "", "checador");
+$conexion = new mysqli("db", "victor", "pass123", "checador");
 
 // Consulta para obtener el número de personas que han entrado en el día
 $query_reporte = "SELECT datos_emple.nombre_emple, datos_emple.Id_emple, regis_ingreso.fec_hor 

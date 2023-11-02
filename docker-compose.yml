@@ -1,35 +1,28 @@
 version: '3'
+
 services:
-  servidorweb:
+  web:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: .  # Utiliza el contexto actual (donde se encuentra el Dockerfile)
+      dockerfile: Dockerfile  # Utiliza el Dockerfile que hemos definido
     ports:
-      - "9090:80"
-    container_name: servidorWeb1
-    depends_on:
-      - db
-  db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      - MYSQL_DATABASE=checador
-      - MYSQL_USER=victor
-      - MYSQL_PASSWORD=victor1234
-      - MYSQL_ALLOW_EMPTY_PASSWORD=1
-    volumes:
-      - db-data:/var/lib/mysql
-      - ./bd/checador.sql:/docker-entrypoint-initdb.d/checador.sql
-    ports:
-      - "3306:3306"
-    container_name: db
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    ports:
-      - "8080:80"
+      - "8080:80"  # Mapea el puerto 8080 del host al puerto 80 del contenedor
     depends_on:
       - db
 
-volumes:
-  db-data:
-    driver: local
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: pass123
+      MYSQL_DATABASE: checador
+      MYSQL_USER: victor
+      MYSQL_PASSWORD: pass123 
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "9090:80"  # Mapea el puerto 9090 del host al puerto 80 del contenedor
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: example_root_password

@@ -91,9 +91,9 @@ th {
     <a href="checador.php"><button>Regresar</button></a>
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
+        $servername = "db";
+        $username = "victor";
+        $password = "pass123";
         $dbname = "checador";
 
         $conn = new mysqli($servername, $username, $password, $dbname);
