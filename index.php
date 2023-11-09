@@ -2,7 +2,7 @@
 if (isset($_GET['data'])) {
     $data = $_GET['data'];
 
-    $conn = new mysqli("localbdhost", "victor", "pass123", "checador");
+    $conn = new mysqli("db", "victor", "pass123", "checador");
 
     if ($conn->connect_error) {
         die("Error en la conexión: " . $conn->connect_error);
