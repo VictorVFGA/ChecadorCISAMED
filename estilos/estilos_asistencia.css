@@ -1,4 +1,3 @@
-/* Reset de estilos */
 * {
     margin: 0;
     padding: 0;
@@ -25,6 +24,36 @@ h2 {
     color: #333;
     margin-bottom: 20px;
     text-align: center;
+}
+
+/* Estilo del formulario */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input[type="date"],
+input[type="submit"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
 }
 
 /* Estilo de la tabla de resultados */

@@ -47,6 +47,7 @@
         </form>
         <br>
         <a href="checador.php"><button>Regresar</button></a>
+
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['empleado_consulta'])) {
@@ -75,6 +76,17 @@
                     echo "</table>";
                     echo "<br>";
                     echo "<br>";
+
+                    // Agregar botón para descargar CSV
+                    echo '<form method="POST" action="descargar_csv_empleados.php">';
+                    $result_asistencia->data_seek(0); // Reiniciar el puntero del resultado
+                    while ($fila_asistencia = $result_asistencia->fetch_assoc()) {
+                        echo '<input type="hidden" name="nombre_emple[]" value="' . htmlspecialchars($fila_asistencia["nombre_emple"]) . '">';
+                        echo '<input type="hidden" name="Id_emple[]" value="' . htmlspecialchars($fila_asistencia["Id_emple"]) . '">';
+                        echo '<input type="hidden" name="fec_hor[]" value="' . htmlspecialchars($fila_asistencia["fec_hor"]) . '">';
+                    }
+                    echo '<input type="submit" value="Descargar CSV">';
+                    echo '</form>';
                 } else {
                     echo "<p>No se encontraron registros para el empleado y mes seleccionados.</p>";
                 }

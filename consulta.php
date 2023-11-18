@@ -45,6 +45,17 @@
                         echo "</table>";
                         echo "<br>";
                         echo "<br>";
+
+                        // Agregar botón para descargar CSV
+                        echo '<form method="POST" action="descargar_csv.php">';
+                        $result_dias->data_seek(0); // Reiniciar el puntero del resultado
+                        while ($fila_reporte = $result_dias->fetch_assoc()) {
+                            echo '<input type="hidden" name="nombre_emple[]" value="' . htmlspecialchars($fila_reporte["nombre_emple"]) . '">';
+                            echo '<input type="hidden" name="Id_emple[]" value="' . htmlspecialchars($fila_reporte["Id_emple"]) . '">';
+                            echo '<input type="hidden" name="fec_hor[]" value="' . htmlspecialchars($fila_reporte["fec_hor"]) . '">';
+                        }
+                        echo '<input type="submit" value="Descargar CSV">';
+                        echo '</form>';
                     } else {
                         echo "<p>No se encontraron registros para la fecha seleccionada.</p>";
                     }
