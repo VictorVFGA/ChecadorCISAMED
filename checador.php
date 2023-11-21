@@ -3,6 +3,8 @@
 <head>
     <title>Registro</title>
     <link rel="stylesheet" href="estilos/estilos_checador.css">
+    <link rel="icon" href="/ima.png" type="image/png">
+
 </head>
 <body>
     <div class="pagina">
@@ -63,7 +65,7 @@
 
         <div class="cont2">
             <?php
-                echo '<button onclick="limpiar()">Aceptar</button>';    
+                // Elimina la línea correspondiente al botón "Aceptar"
                 echo '<button onclick="recargar()">Actualizar</button>';
                 echo '<a href="reporte_empleados.php"><button>Asistencia del día</button></a>';
                 echo '<a href="consulta.php"><button>Consultar por fecha</button></a>';
@@ -78,19 +80,14 @@
         }
 
         function recargar() {
-            location.reload();
+            // Recarga la página después de 4 segundos
+            setTimeout(function() {
+                location.reload();
+            }, 3000);
         }
 
-        function generarReporte() {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "reporte_empleados.php", true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    document.getElementById('contenido').innerHTML = xhr.responseText;
-                }
-            };
-            xhr.send();
-        }
+        // Llama a recargar() al cargar la página
+        window.onload = recargar;
     </script>
 </body>
 </html>

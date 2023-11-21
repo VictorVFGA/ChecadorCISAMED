@@ -17,6 +17,7 @@ services:
       MYSQL_DATABASE: checador
       MYSQL_USER: victor
       MYSQL_PASSWORD: pass123 
+      TZ: America/Mexico_City
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
