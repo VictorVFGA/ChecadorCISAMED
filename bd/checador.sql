@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2023 a las 00:27:39
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Servidor: db:3306
+-- Tiempo de generación: 25-11-2023 a las 19:56:12
+-- Versión del servidor: 5.7.41
+-- Versión de PHP: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,28 +24,69 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `asistencia_alum`
+--
+
+CREATE TABLE `asistencia_alum` (
+  `idAsist` int(11) NOT NULL,
+  `IDAlumn` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `asi_dia_hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `asistencia_alum`
+--
+
+INSERT INTO `asistencia_alum` (`idAsist`, `IDAlumn`, `asi_dia_hora`) VALUES
+(1, '12', '2023-11-25 02:06:10'),
+(2, '12', '2023-11-25 02:06:23');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `datos_alumno`
+--
+
+CREATE TABLE `datos_alumno` (
+  `IDAlumn` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `NombreAlum` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `PeriodoIngre` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `datos_alumno`
+--
+
+INSERT INTO `datos_alumno` (`IDAlumn`, `NombreAlum`, `PeriodoIngre`) VALUES
+('12', 'Juan Perez', '2019B');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `datos_emple`
 --
 
 CREATE TABLE `datos_emple` (
   `id_emple` varchar(10) NOT NULL,
-  `nombre_emple` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `nombre_emple` varchar(50) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `rol` varchar(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `datos_emple`
 --
 
-INSERT INTO `datos_emple` (`id_emple`, `nombre_emple`) VALUES
-('1', 'Administrador'),
-('25E678DA', 'Victor Fernando'),
-('80F56923', 'Visitante 1'),
-('90115823', 'Victor Gonzalez'),
-('902E2923', 'Minue Paredes'),
-('909F291C', 'Visitante 2'),
-('90B7B71C', 'Valeria Martinez'),
-('925DD321', 'Juan Perez'),
-('A5CC7DDA', 'Jose Luis Lopez Diaz ');
+INSERT INTO `datos_emple` (`id_emple`, `nombre_emple`, `username`, `rol`) VALUES
+('1', 'Administrador', 'admin', 'admin'),
+('25E678DA', 'Victor Fernando', 'victor', 'empleado'),
+('80F56923', 'Visitante 1', 'visitante1', 'empleado'),
+('90115823', 'Victor Gonzalez', 'victorgonzalez', 'empleado'),
+('902E2923', 'Minue Paredes', 'minue', 'empleado'),
+('909F291C', 'Visitante 2', 'visitante2', 'empleado'),
+('90B7B71C', 'Valeria Martinez', 'vale', 'empleado'),
+('925DD321', 'Juan Perez', 'juan', 'empleado'),
+('A5CC7DDA', 'Jose Luis Lopez Diaz ', 'jose', 'empleado');
 
 -- --------------------------------------------------------
 
@@ -56,8 +97,8 @@ INSERT INTO `datos_emple` (`id_emple`, `nombre_emple`) VALUES
 CREATE TABLE `regis_ingreso` (
   `id_reg` int(11) NOT NULL,
   `id_emple` varchar(10) NOT NULL,
-  `fec_hor` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `fec_hor` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `regis_ingreso`
@@ -105,17 +146,40 @@ INSERT INTO `regis_ingreso` (`id_reg`, `id_emple`, `fec_hor`) VALUES
 (45, '925DD321', '2023-09-26 01:08:17'),
 (46, '925DD321', '2023-09-26 01:27:03'),
 (47, '902E2923', '2023-09-26 20:10:07'),
-(53, 'A5CC7DDA', '2023-09-26 20:11:54');
+(53, 'A5CC7DDA', '2023-09-26 20:11:54'),
+(54, '1', '2023-11-24 03:05:50'),
+(55, '1', '2023-11-24 03:12:06'),
+(56, '1', '2023-11-24 03:16:34'),
+(57, '1', '2023-11-24 03:21:41'),
+(58, '1', '2023-11-24 03:23:00'),
+(59, '1', '2023-11-24 03:23:05'),
+(60, '1', '2023-11-24 04:06:35'),
+(61, '1', '2023-11-24 05:12:09'),
+(62, '1', '2023-11-24 05:12:45');
 
 --
 -- Índices para tablas volcadas
 --
 
 --
+-- Indices de la tabla `asistencia_alum`
+--
+ALTER TABLE `asistencia_alum`
+  ADD PRIMARY KEY (`idAsist`),
+  ADD KEY `IDAlumn` (`IDAlumn`);
+
+--
+-- Indices de la tabla `datos_alumno`
+--
+ALTER TABLE `datos_alumno`
+  ADD PRIMARY KEY (`IDAlumn`);
+
+--
 -- Indices de la tabla `datos_emple`
 --
 ALTER TABLE `datos_emple`
   ADD PRIMARY KEY (`id_emple`),
+  ADD UNIQUE KEY `username` (`username`),
   ADD KEY `id_emple` (`id_emple`);
 
 --
@@ -130,14 +194,26 @@ ALTER TABLE `regis_ingreso`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `asistencia_alum`
+--
+ALTER TABLE `asistencia_alum`
+  MODIFY `idAsist` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `regis_ingreso`
 --
 ALTER TABLE `regis_ingreso`
-  MODIFY `id_reg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id_reg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `asistencia_alum`
+--
+ALTER TABLE `asistencia_alum`
+  ADD CONSTRAINT `asistencia_alum_ibfk_1` FOREIGN KEY (`IDAlumn`) REFERENCES `datos_alumno` (`IDAlumn`);
 
 --
 -- Filtros para la tabla `regis_ingreso`

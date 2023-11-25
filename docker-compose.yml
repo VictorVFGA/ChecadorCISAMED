@@ -9,6 +9,8 @@ services:
       - "8080:80"  # Mapea el puerto 8080 del host al puerto 80 del contenedor
     depends_on:
       - db
+    environment:
+      TZ: America/Mexico_City  # Set the time zone for the web service
 
   db:
     image: mysql:5.7

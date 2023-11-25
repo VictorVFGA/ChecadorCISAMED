@@ -24,10 +24,10 @@
                 if (isset($_POST['fecha_consulta'])) {
                     $fecha = $_POST['fecha_consulta'];
 
-                    $sql = "SELECT datos_emple.nombre_emple, datos_emple.Id_emple, regis_ingreso.fec_hor 
-                            FROM datos_emple 
-                            JOIN regis_ingreso ON datos_emple.Id_emple = regis_ingreso.id_emple 
-                            WHERE DATE(regis_ingreso.fec_hor) = '$fecha'";
+                    $sql = "SELECT datos_alumno.NombreAlum, datos_alumno.IDAlumn, asistencia_alum.asi_dia_hora 
+                            FROM datos_alumno 
+                            JOIN asistencia_alum ON datos_alumno.IDAlumn = asistencia_alum.IDAlumn 
+                            WHERE DATE(asistencia_alum.asi_dia_hora) = '$fecha'";
 
                     $result_dias = $conexion->query($sql);
 
@@ -37,9 +37,9 @@
                         echo "<tr><th>Nombre</th><th>ID</th><th>Fecha y Hora</th></tr>";
                         while ($fila_reporte = $result_dias->fetch_assoc()) {
                             echo "<tr>";
-                            echo "<td>" . $fila_reporte["nombre_emple"] . "</td>";
-                            echo "<td>" . $fila_reporte["Id_emple"] . "</td>";
-                            echo "<td>" . $fila_reporte["fec_hor"] . "</td>";
+                            echo "<td>" . $fila_reporte["NombreAlum"] . "</td>";
+                            echo "<td>" . $fila_reporte["IDAlumn"] . "</td>";
+                            echo "<td>" . $fila_reporte["asi_dia_hora"] . "</td>";
                             echo "</tr>";
                         }
                         echo "</table>";
@@ -47,12 +47,12 @@
                         echo "<br>";
 
                         // Agregar botón para descargar CSV
-                        echo '<form method="POST" action="descargar_csv.php">';
+                        echo '<form method="POST" action="des_csv_asiDiaAlum.php">';
                         $result_dias->data_seek(0); // Reiniciar el puntero del resultado
                         while ($fila_reporte = $result_dias->fetch_assoc()) {
-                            echo '<input type="hidden" name="nombre_emple[]" value="' . htmlspecialchars($fila_reporte["nombre_emple"]) . '">';
-                            echo '<input type="hidden" name="Id_emple[]" value="' . htmlspecialchars($fila_reporte["Id_emple"]) . '">';
-                            echo '<input type="hidden" name="fec_hor[]" value="' . htmlspecialchars($fila_reporte["fec_hor"]) . '">';
+                            echo '<input type="hidden" name="NombreAlum[]" value="' . htmlspecialchars($fila_reporte["NombreAlum"]) . '">';
+                            echo '<input type="hidden" name="IDAlumn[]" value="' . htmlspecialchars($fila_reporte["IDAlumn"]) . '">';
+                            echo '<input type="hidden" name="asi_dia_hora[]" value="' . htmlspecialchars($fila_reporte["asi_dia_hora"]) . '">';
                         }
                         echo '<input type="submit" value="Descargar CSV">';
                         echo '</form>';
