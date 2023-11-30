@@ -65,7 +65,9 @@
             }
 
             $conexion->close();
+            
         }
+        echo '<a href="adminInterface.php"><button>Regresar</button></a>';
         ?>
     </div>
 </body>

@@ -7,30 +7,45 @@
 body {
     font-family: 'Arial', sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 100vh;
     margin: 0;
     padding: 0;
-    background: url('/logo.jpeg') no-repeat top left fixed; /* Cambiado a background */
-    background-size: contain;
-    background-color: linear-gradient(to right, #0000FF, #800080);
+    background: linear-gradient(to right, #0000FF, #800080);
 }
 
-@media (orientation: landscape) {
-    body {
-        background: linear-gradient(to right, #0000FF, #800080);
-    }
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     max-width: 800px;
-    margin: 50px auto;
+    width: 100%;
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 h2 {
@@ -54,15 +69,22 @@ th {
     background-color: #007bff;
     color: #fff;
 }
-
+.cont2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
 a button, button {
+    justify-content: center;
     background-color: #007bff;
     color: #fff;
-    padding: 10px 20px;
+    padding: 15px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin: 0 5px;
+    margin: 20px auto 0; /* Ajustado para centrar el botón */
     transition: background-color 0.3s ease;
 }
 

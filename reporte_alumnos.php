@@ -34,6 +34,7 @@
         
         echo "</table>";
         echo "<br>";
+        
         echo "<br>";
 
         // Agregar botón para descargar CSV
@@ -45,11 +46,15 @@
             echo '<input type="hidden" name="asi_dia_hora[]" value="' . htmlspecialchars($fila_reporte["asi_dia_hora"]) . '">';
         }
         echo '<input type="submit" value="Descargar CSV">';
+        echo "<br>";
         echo '</form>';
+        echo '<a href="adminInterface.php"><button>Regresar</button></a>';
 
-       // echo '<a href="checador.php"><button>Regresar</button></a>';
+      
     } else {
         echo "<p>No se encontraron entradas hoy.</p>";
+        echo "<br>";
+        echo '<a href="adminInterface.php"><button>Regresar</button></a>';
     }
 
     // Cerrar la conexión a la base de datos

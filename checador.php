@@ -7,6 +7,9 @@
 </head>
 <body>
     <div class="pagina">
+        <div class="logo-container">
+            <img src="/logo.jpeg" alt="Logo de la empresa" class="logo">
+        </div>
         <div class="container">
             <?php
                 // Set the default time zone to America/Mexico_City
