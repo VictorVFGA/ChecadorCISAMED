@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Registro</title>
-    <link rel="stylesheet" href="estilos/estilos_checador.css">
+    <link rel="stylesheet" href="estilos/estilos_adminInterface.css">
     <link rel="icon" href="/logo.jpeg" type="image/jpeg">
 </head>
 <body>
